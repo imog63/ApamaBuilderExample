@@ -1,19 +1,12 @@
 SAMPLE
 
-   Sample correlator plugins using the Java Plugin Development Kit (PDK)
+   Using the Apama Builder image.
 
 
 DESCRIPTION
 
-   Library source and associated MonitorScript programs to demonstrate the
-   development of EPL plugins written in Java. 
-   
-
-COPYRIGHT NOTICE
-
-   $Copyright(c) 2013 Progress Software Corporation. All Rights Reserved.$ 
-   $Copyright (c) 2013-2017 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.$ 
-   Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG 
+   Using the Apama Builder image to build an EPL plugin written in Java, test the plugin and then 
+   build a docker image that runs the application in the deployed container. 
 
 
 FILES
@@ -21,52 +14,14 @@ FILES
    README.txt                This file
    build.xml                 ANT build file for all plugins
    
-   SimplePlugin.java         Source for the simple example, using the Java API
-   SimplePlugin.mon          MonitorScript code for the Java simple example 
-   SimplePlugin.xml          XML deployment descriptor for the Simple plugin jar
-   SimplePluginSample.txt    Reference output for the simple plugin
-   
    ComplexPlugin.java        Source for the complex example, using the Java API
    ComplexPlugin.mon         MonitorScript code for the Java complex example
    ComplexPlugin.xml         XML deployment descriptor for the Complex plugin jar
    ComplexPluginSample.txt   Reference output for the complex plugin
-    
-   SendPlugin.java           Source for the send example, using the Java API
-   SendPlugin.mon            MonitorScript code for the Java send example
-   SendPlugin.xml            XML deployment descriptor for the Send plugin jar
-   SendPluginSample.txt      Reference output for the send plugin
-
-   SubscribePlugin.java      Source for the subscribe example, using the Java API
-   SubscribePlugin.mon       MonitorScript code for the Java subscribe example
-   SubscribePlugin.xml       XML deployment descriptor for the Subscribe plugin jar
-   SubscribePluginSample.txt Reference output for the subscribe plugin
 
 
-BUILDING THE SAMPLES
+BUILDING THE SAMPLE
 
-   It is recommended (especially for Windows users) that you copy this sample 
-   folder to an area of your APAMA_WORK directory rather than running it 
-   directly from the installation directory. For Windows users with UAC 
-   enabled this step is required to avoid access denied errors when writing 
-   to the sample directory.
-
-   The Java samples use the Java EPL plugin API. 
-   
-   Note also that Apache ANT is also required to build the plugins using the
-   supplied build.xml.
-
-   ** To build the samples **
-   
-   Run ant in the current directory:
-
-   $ ant
-
-   A successful build will produce four output files:
-
-      simple_plugin.jar
-      complex_plugin.jar
-      send_plugin.jar
-      subscribe_plugin.jar
    
 RUNNING THE SAMPLES
 
@@ -101,11 +56,5 @@ RUNNING THE SAMPLES
       
 SAMPLE OUTPUT
 
-   SimplePlugin.mon should produce output similar to the file SimplePluginSample.txt
-
    ComplexPlugin.mon should produce output similar to the file ComplexPluginSample.txt
-
-   SendPlugin.mon should produce output similar to the file SendPluginSample.txt
-
-   SubscribePlugin.mon should produce output similar to the file SubscribePluginSample.txt
 
