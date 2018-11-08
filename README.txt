@@ -35,7 +35,7 @@ BUILDING THE SAMPLE
 
    run the image 
 
-      docker run -it --rm 40000:15903 builder-test:latest 
+      docker run -it --rm -p 40000:15903 builder-test:latest 
 
 
 RUNNING THE SAMPLES
