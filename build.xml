@@ -33,31 +33,7 @@
 		</jar>
 	</target>
 
-	<!-- Make the jar for the send plugin sample -->
-	<target name="sendjar" depends="compile">
-		<jar jarfile="${output-dir}/send_plugin.jar">
-			  <zipfileset dir="." includes="SendPlugin.xml" fullpath="META-INF/jmon-jar.xml"/>
-			  <fileset dir="${output-dir}" includes="SendPlugin*.class"/>
-		</jar>
-	</target>
-
-	<!-- Make the jar for the subscribe plugin sample -->
-	<target name="subscribejar" depends="compile">
-		<jar jarfile="${output-dir}/subscribe_plugin.jar">
-			  <zipfileset dir="." includes="SubscribePlugin.xml" fullpath="META-INF/jmon-jar.xml"/>
-			  <fileset dir="${output-dir}" includes="SubscribePlugin*.class"/>
-		</jar>
-	</target>
-
-	<!-- Make the jar for the simple plugin sample -->
-	<target name="simplejar" depends="compile">
-		<jar jarfile="${output-dir}/simple_plugin.jar">
-			  <zipfileset dir="." includes="SimplePlugin.xml" fullpath="META-INF/jmon-jar.xml"/>
-			  <fileset dir="${output-dir}" includes="SimplePlugin*.class"/>
-		</jar>
-	</target>
-
 	<!-- Meta (and default) target for all jars -->
-	<target name="jars" depends="simplejar,complexjar,sendjar,subscribejar">
+	<target name="jars" depends="complexjar">
 	</target>
 </project>
