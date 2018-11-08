@@ -18,7 +18,7 @@ COPY --chown=1724:1724 complex.yaml ${APAMA_WORK}/complex.yaml
 RUN ant
 
 #here we will test the application using pysys
-#RUN pysys run 
+RUN pysys run tests
 
 FROM ${APAMA_IMAGE}
 COPY --from=builder ${APAMA_WORK}/complex_plugin.jar ${APAMA_WORK}/complex_plugin.jar
