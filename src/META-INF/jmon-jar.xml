@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * $Copyright(c) 2002 - 2006 Progress Software Corporation. All Rights Reserved.$ 
+ * $Copyright (c) 2013,2015 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.$ 
+ * Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG 
+ *
+ * $Revision: 249541 $
+-->
+
+<!DOCTYPE jmon-jar PUBLIC "-//Apama, Inc.//DTD Java Monitors 1.2//EN" "http://www.apama.com/dtd/jmon-jar_1_2.dtd">
+
+<jmon-jar>
+
+	<name>Denial of Service</name>
+	<version>1.0</version>
+	<author></author>
+	<company></company>
+	<description>
+		Deployment descriptor for Dos sample java monitor. All events and monitors
+		are mapped into the com.apama.samples.dos namespace within the correlator
+	</description>
+	<classpath></classpath>
+
+	<application-classes>
+
+		<event>
+			<event-name>com.apama.samples.dos.Ping</event-name>
+			<event-class>Ping</event-class>
+			<description>Event representing a ping from a source</description>
+		</event>
+		
+		<event>
+			<event-name>com.apama.samples.dos.PingAlert</event-name>
+			<event-class>PingAlert</event-class>
+			<description>
+			        Event used to notify when the number of pings from a source 
+				exceeds a set maximum. 
+			</description>
+		</event>
+
+		<monitor>
+			<monitor-name>com.apama.samples.dos.Dos</monitor-name>
+			<monitor-class>Dos</monitor-class>
+			<description>Factory monitor to control the monitoring of pings from sources</description>
+		</monitor>
+
+	</application-classes>
+
+</jmon-jar>

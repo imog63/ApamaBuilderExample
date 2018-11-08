@@ -1,0 +1,6 @@
+correlator:
+    javaApplicationSupport: true
+    initialization:
+        list:
+            - ${PARENT_DIR}/dos-jmon.jar
+        encoding: UTF8
