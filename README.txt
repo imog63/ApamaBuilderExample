@@ -62,3 +62,10 @@ SAMPLE OUTPUT
       
    ComplexPlugin.mon should produce output similar to the file ComplexPluginSample.txt
    
+
+TIDY UP
+     
+   stop the correlator in the container, which will also stop the container 
+      
+      engine_management -p 40000 -s bye!
+      
