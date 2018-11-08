@@ -40,7 +40,7 @@ RUNNING THE SAMPLES
    1. Navigate to the folder that contains this README.txt 
       followed by the corresponding monitorScript code:
    
-      > engine_inject -v SimplePlugin.mon -p docker_port
+      > engine_inject -v ComplexPlugin.mon -p docker_port
       
       
 SAMPLE OUTPUT
