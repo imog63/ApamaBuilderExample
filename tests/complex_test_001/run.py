@@ -1,6 +1,7 @@
 # Sample PySys testcase
 # Copyright (c) 2015-2016, 2018 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors. 
 # Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG 
+import os
 
 from pysys.constants import *
 from apama.basetest import ApamaBaseTest
@@ -14,28 +15,17 @@ class PySysTest(ApamaBaseTest):
 		# automatically get an available port that will be used for all 
 		# operations against it
 		correlator = CorrelatorHelper(self, name='testcorrelator')
-		correlator.start(logfile='testcorrelator.log')
-		receiveProcess = correlator.receive(filename='receive.evt', channels=['EchoChannel'], logChannels=True)
+		correlator.start(logfile='testcorrelator.log',config=[os.path.join(self.project.APAMA_WORK,'complex.yaml')])
 		correlator.applicationEventLogging(enable=True)
 		
-		# inject the simple.mon monitor (directory defaults to the testcase input)
+		# inject the monitor (directory defaults to the testcase input)
 		correlator.injectEPL(filenames=['ComplexPlugin.mon'])
 		
 		# wait for all events to be processed
 		correlator.flush()
 		
-		# wait until the receiver writes the expected events to disk
-		#self.waitForSignal('receive.evt', expr="SimpleEvent", condition=">=2")
 		
 	def validate(self):
 		# look for log statements in the correlator log file
 		self.assertGrep('testcorrelator.log', expr=' (ERROR|FATAL) ', contains=False)
-		
-		#exprList = []
-		#exprList.append('Received simple event with message - This is the first simple event')
-		#exprList.append('Received simple event with message - This is the second simple event')
-		#self.assertOrderedGrep('testcorrelator.log', exprList=exprList)
-	
-		# check the received events against the reference
-		#self.assertDiff('receive.evt', 'ref_receive.evt')
 		

@@ -6,20 +6,20 @@ ARG APAMA_IMAGE=store/softwareag/apama-correlator:${APAMA_VERSION}
 FROM ${APAMA_BUILDER} as builder
 
 #setup the source
-COPY --chown=1724:1724 complex_test_001 ${APAMA_WORK}/complex_test_001
+COPY --chown=1724:1724 tests ${APAMA_WORK}/tests
 COPY --chown=1724:1724 ComplexPlugin.java ${APAMA_WORK}/ComplexPlugin.java
 COPY --chown=1724:1724 ComplexPlugin.mon ${APAMA_WORK}/ComplexPlugin.mon
 COPY --chown=1724:1724 ComplexPlugin.xml ${APAMA_WORK}/ComplexPlugin.xml
 COPY --chown=1724:1724 ComplexPluginSample.txt ${APAMA_WORK}/ComplexPluginSample.txt
 COPY --chown=1724:1724 build.xml ${APAMA_WORK}/build.xml
-COPY --chown=1724:1724 pysysproject.xml ${APAMA_WORK}/pysysproject.xml
+#COPY --chown=1724:1724 pysysproject.xml ${APAMA_WORK}/pysysproject.xml
 COPY --chown=1724:1724 complex.yaml ${APAMA_WORK}/complex.yaml
 
 #build the application
 RUN ant
 
 #here we will test the application using pysys
-RUN pysys run 
+RUN cd tests && pysys run 
 
 FROM ${APAMA_IMAGE}
 COPY --from=builder ${APAMA_WORK}/complex_plugin.jar ${APAMA_WORK}/complex_plugin.jar
