@@ -19,7 +19,7 @@ class PySysTest(ApamaBaseTest):
 		correlator.applicationEventLogging(enable=True)
 		
 		# inject the monitor (directory defaults to the testcase input)
-		correlator.injectEPL(filenames=['ComplexPlugin.mon'])
+		correlator.injectEPL(filenames=[os.path.join(self.project.APAMA_WORK,'ComplexPlugin.mon')])
 		
 		# wait for all events to be processed
 		correlator.flush()
