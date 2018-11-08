@@ -6,6 +6,7 @@ ARG APAMA_IMAGE=store/softwareag/apama-correlator:${APAMA_VERSION}
 FROM ${APAMA_BUILDER} as builder
 
 #setup the source
+COPY --chown=1724:1724 tests ${APAMA_WORK}/tests
 COPY --chown=1724:1724 ComplexPlugin.java ${APAMA_WORK}/ComplexPlugin.java
 COPY --chown=1724:1724 ComplexPlugin.mon ${APAMA_WORK}/ComplexPlugin.mon
 COPY --chown=1724:1724 ComplexPlugin.xml ${APAMA_WORK}/ComplexPlugin.xml
