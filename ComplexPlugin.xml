@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jmon-jar PUBLIC "-//Apama, Inc.//DTD Java Monitors 1.2//EN" "http://www.apama.com/dtd/jmon-jar_1_2.dtd">
+
+<!-- Descriptor for the jar in which the plugin will be deployed which loads
+the plugin so that EPL can access it -->
+
+<jmon-jar>
+
+	<name>ComplexPlugin</name>
+	<version>1.0</version>
+	<author></author>
+	<company></company>
+	<description>Complex plugin</description>
+	<classpath></classpath>
+
+	<application-classes>
+
+		<plugin>
+			<plugin-name>ComplexPlugin</plugin-name>
+			<plugin-class>ComplexPlugin</plugin-class>
+			<description>A test plugin</description>
+		</plugin>
+
+	</application-classes>
+
+</jmon-jar>

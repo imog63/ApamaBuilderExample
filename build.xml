@@ -1,94 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<!--
- *
- * $Copyright(c) 2002-2006, 2008, 2010 Progress Software Corporation. All Rights Reserved.$ 
- * $Copyright (c) 2013,2015 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.$ 
- * Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG 
- *
- * $Revision: 288757 $
--->
-
-<project name="Simple compile and jar build script" default="jar" basedir=".">
-
-	<!-- Global properties for the build -->
+<project default="jars" basedir=".">
 	<presetdef name="javac">
 		<javac includeantruntime="false" />
 	</presetdef>
 
-	<property environment="env"/>
-	<property name="jar-file"      value="dos-jmon.jar"/>
-	<property name="apama-home"    value="${env.APAMA_HOME}"/>
-	<property name="apama-lib-dir" value="${apama-home}/lib"/>
-	<property name="jar-version"   value="${env.APAMA_LIBRARY_VERSION}"/>
-	<property name="output-dir"    value="${user.dir}"/>
 
+	<property environment="env"/>
 	<fail unless="env.APAMA_LIBRARY_VERSION" message="Please run the bin/apama_env script before attempting to build this sample."/>
 
-	<patternset id="libs">
-		<include name="ap-correlator-extension-api.jar"/>
-	</patternset>
-		
-	<patternset id="jar-contents">
-		<include name="*.class" />
-		<include name="META-INF/jmon-jar.xml"/>
-	</patternset>
+	<property name="apama-home-jar-dir" location="${env.APAMA_HOME}/lib"/>
+	<property name="output-dir" location="${user.dir}"/>
 
-
-	<!-- Prepare target sets uptodate property to indicate if -->
-	<!-- the jar file is uptodate wrt to the java and class files, -->
-	<!-- the deployment descriptor and the required libraries -->
-	<target name="prepare">	       
-		<uptodate targetfile="${jar-file}" property="uptodate">
-			<srcfiles dir="./src" includes="*.java"/>
-			<srcfiles dir="${output-dir}/src">
-				<patternset refid="jar-contents"/>
-			</srcfiles>
-			<srcfiles dir="${apama-lib-dir}">
-				<patternset refid="libs"/>
-			</srcfiles>
-		</uptodate>
-		<mkdir dir="${output-dir}/src"/>
-	</target>
-
+	<mkdir dir="${output-dir}"/>
 
 	<!-- Compile target compiles all java files in the current directory -->
-	<!-- with the classpath set to the apama installation lib directory -->
-	<target name="compile" depends="prepare" unless="uptodate">
-		<javac srcdir="./src" destdir="${output-dir}/src">
+	<!-- with the classpath set to the jar files in the apama-src obj location -->
+	<target name="compile">
+		<javac srcdir="." destdir="${output-dir}" debug="true" classpath="${apama-home-jar-dir}/ap-correlator-extension-api.jar">
 			<classpath>
-				<fileset dir="${apama-lib-dir}">
-					<patternset refid="libs"/>
+				<fileset dir="." includes="*.java">
 				</fileset>
 			</classpath>
-			<compilerarg value="-Xlint:unchecked"/>
 		</javac>
 	</target>
 
 
-	<!-- Jar target archives the deployment descriptor and class files -->
-	<target name="jar" depends="compile" unless="uptodate">
-		<jar jarfile="${output-dir}/${jar-file}">
-			<fileset dir="${output-dir}/src">
-				<patternset refid="jar-contents"/>
-			</fileset>
-			<fileset dir="./src">
-				<patternset refid="jar-contents"/>
-			</fileset>
+	<!-- Make the jar for the complex plugin sample -->
+	<target name="complexjar" depends="compile">
+		<jar jarfile="${output-dir}/complex_plugin.jar">
+			  <zipfileset dir="${output-dir}" includes="ComplexPlugin.xml" fullpath="META-INF/jmon-jar.xml"/>
+			  <fileset dir="${output-dir}" includes="Complex*.class"/>
 		</jar>
 	</target>
 
+	<!-- Make the jar for the send plugin sample -->
+	<target name="sendjar" depends="compile">
+		<jar jarfile="${output-dir}/send_plugin.jar">
+			  <zipfileset dir="." includes="SendPlugin.xml" fullpath="META-INF/jmon-jar.xml"/>
+			  <fileset dir="${output-dir}" includes="SendPlugin*.class"/>
+		</jar>
+	</target>
 
-	<!-- Clean target removes all the class and jar files from output -->
-	<!-- location downwards recursively -->
-	<target name="clean">
-		<delete failonerror="false">
-			<fileset dir="${output-dir}">
-				<include name="**/*.class"/>
-				<include name="**/*.jar"/>
-			</fileset>
-		</delete>
+	<!-- Make the jar for the subscribe plugin sample -->
+	<target name="subscribejar" depends="compile">
+		<jar jarfile="${output-dir}/subscribe_plugin.jar">
+			  <zipfileset dir="." includes="SubscribePlugin.xml" fullpath="META-INF/jmon-jar.xml"/>
+			  <fileset dir="${output-dir}" includes="SubscribePlugin*.class"/>
+		</jar>
+	</target>
+
+	<!-- Make the jar for the simple plugin sample -->
+	<target name="simplejar" depends="compile">
+		<jar jarfile="${output-dir}/simple_plugin.jar">
+			  <zipfileset dir="." includes="SimplePlugin.xml" fullpath="META-INF/jmon-jar.xml"/>
+			  <fileset dir="${output-dir}" includes="SimplePlugin*.class"/>
+		</jar>
+	</target>
+
+	<!-- Meta (and default) target for all jars -->
+	<target name="jars" depends="simplejar,complexjar,sendjar,subscribejar">
 	</target>
 </project>
-
-

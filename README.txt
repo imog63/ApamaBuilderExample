@@ -1,115 +1,111 @@
 SAMPLE
 
-   Denial Of Service sample java application
+   Sample correlator plugins using the Java Plugin Development Kit (PDK)
 
 
 DESCRIPTION
 
-   The Event Correlator is used to detect Denial of Service attacks from one 
-   or more hosts through detection of high densities of 'Ping' events. 
-   Periodic alerts are emitted with the address of the originating host and 
-   the number of Ping events detected. This java monitor demonstrates the use
-   of prepared event expression templates, allowing for performance 
-   optimisation in applications which carry out a significant amount of event 
-   expression creation.
+   Library source and associated MonitorScript programs to demonstrate the
+   development of EPL plugins written in Java. 
    
-   
+
 COPYRIGHT NOTICE
 
-   $Copyright(c) 2002-2006, 2008, 2009, 2013 Progress Software Corporation. All Rights Reserved.$ 
-   $Copyright (c) 2013 - 2017 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.$ 
+   $Copyright(c) 2013 Progress Software Corporation. All Rights Reserved.$ 
+   $Copyright (c) 2013-2017 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.$ 
    Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG 
 
- 
+
 FILES
 
-   README.txt                   This file
-   dos-feed.evt                 Sample event data
-   build.xml                    XML-based build file
-   src/Ping.java                Abstraction of a ping event
-   src/PingAlert.java           Abstraction of a ping alert event
-   src/PingChecker.java         Worker monitor used to detect DOS attacks
-   src/Dos.java                 Factory monitor to start PingCheckers
-   src/META-INF/jmon-jar.xml    Deployment descriptor for the sample
-
-
-BUILDING THE SAMPLE
-
-   It is recommended that you copy this sample folder to an area of your 
-   APAMA_WORK directory rather than running it directly from the installation 
-   directory. For Windows users with UAC enabled this step is required to 
-   avoid access denied errors when writing to the sample directory.
-
-   A Java compiler and optionally Apache Ant are required in order to build 
-   the sample. Check the documentation for the recommended versions.
-
-
-   ** To build the sample on UNIX (Linux) **
+   README.txt                This file
+   build.xml                 ANT build file for all plugins
    
-   Source the apama_env file located in the installation bin directory to set 
-   the environment variables required for building the sample. To build either 
-   run ant, or compile and archive directly in the src directory i.e.
-
-    >ant
+   SimplePlugin.java         Source for the simple example, using the Java API
+   SimplePlugin.mon          MonitorScript code for the Java simple example 
+   SimplePlugin.xml          XML deployment descriptor for the Simple plugin jar
+   SimplePluginSample.txt    Reference output for the simple plugin
    
-   or
+   ComplexPlugin.java        Source for the complex example, using the Java API
+   ComplexPlugin.mon         MonitorScript code for the Java complex example
+   ComplexPlugin.xml         XML deployment descriptor for the Complex plugin jar
+   ComplexPluginSample.txt   Reference output for the complex plugin
+    
+   SendPlugin.java           Source for the send example, using the Java API
+   SendPlugin.mon            MonitorScript code for the Java send example
+   SendPlugin.xml            XML deployment descriptor for the Send plugin jar
+   SendPluginSample.txt      Reference output for the send plugin
+
+   SubscribePlugin.java      Source for the subscribe example, using the Java API
+   SubscribePlugin.mon       MonitorScript code for the Java subscribe example
+   SubscribePlugin.xml       XML deployment descriptor for the Subscribe plugin jar
+   SubscribePluginSample.txt Reference output for the subscribe plugin
+
+
+BUILDING THE SAMPLES
+
+   It is recommended (especially for Windows users) that you copy this sample 
+   folder to an area of your APAMA_WORK directory rather than running it 
+   directly from the installation directory. For Windows users with UAC 
+   enabled this step is required to avoid access denied errors when writing 
+   to the sample directory.
+
+   The Java samples use the Java EPL plugin API. 
    
-    >cd src
-    >javac -classpath "$APAMA_HOME/lib/ap-correlator-extension-api.jar" *.java
-    >jar -cf ../dos-jmon.jar META-INF/jmon-jar.xml *.class
+   Note also that Apache ANT is also required to build the plugins using the
+   supplied build.xml.
 
-
-   ** To build the sample on Microsoft Windows **
+   ** To build the samples **
    
-   Either start a new "Apama Command Prompt" from the Start Menu, or from an 
-   existing command prompt run the apama_env script located in the installation 
-   bin directory to set the environment variables required for building the 
-   sample. To build, either run ant, or compile and archive directly in the 
-   src directory i.e.
+   Run ant in the current directory:
 
-    >ant
+   $ ant
+
+   A successful build will produce four output files:
+
+      simple_plugin.jar
+      complex_plugin.jar
+      send_plugin.jar
+      subscribe_plugin.jar
    
-   or
+RUNNING THE SAMPLES
 
-    >cd src
-    >javac -classpath "%APAMA_HOME%\lib\ap-correlator-extension-api.jar" *.java
-    >jar -cf ..\dos-jmon.jar META-INF\jmon-jar.xml *.class
-
-
-RUNNING THE SAMPLE
+   Running of the samples requires access to the Correlator and Apama command 
+   line tools. 
 
    To ensure that the environment is configured correctly for Apama, all the 
    commands below should be executed from an Apama Command Prompt, or from a 
    shell or command prompt where the bin\apama_env script has been run (or on 
    Unix, sourced). 
-
+   
    1. Start the Apama Correlator in the Apama Command Prompt by
       running:
 
-      > correlator --java
+      > correlator -j
+
+      The Apama Command Prompt can be started using the Windows Start Menu 
+      shortcut.
+
+   2. Navigate to the folder that contains this README.txt, and Inject the simple_plugin test Jar, 
+      followed by the corresponding monitorScript code:
+   
+      > engine_inject -j -v simple_plugin.jar
+      > engine_inject -v SimplePlugin.mon
       
-     The Apama Command Prompt can be started using the Windows Start Menu 
-     shortcut.
 
-   2. (in a separate command prompt/terminal) inject the application jar:
-   
-     >engine_inject -j dos-jmon.jar
-     
-   3. (in a separate command prompt/terminal) register the event receiver and
-     write events to stdout:
-   
-     >engine_receive
-   
-   4. (in a separate command prompt/terminal) send the events:
-   
-     >engine_send dos-feed.evt
+      if you built the sample in the Apama install directory - otherwise, 
+      replace the path with the location you copied the sample to.
 
-     
+   3. Repeat the previous step with the other plugins.
+
+      
 SAMPLE OUTPUT
 
-   The output of the engine_receive window should match the sample_output.txt
-   file (ignoring BATCH tags).
-    
-   (Note that since this sample is time-dependent, the exact output may vary 
-   slightly if the machine is loaded)
-   
+   SimplePlugin.mon should produce output similar to the file SimplePluginSample.txt
+
+   ComplexPlugin.mon should produce output similar to the file ComplexPluginSample.txt
+
+   SendPlugin.mon should produce output similar to the file SendPluginSample.txt
+
+   SubscribePlugin.mon should produce output similar to the file SubscribePluginSample.txt
+
