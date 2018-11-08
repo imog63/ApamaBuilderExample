@@ -24,7 +24,9 @@ BUILDING THE SAMPLE
 
    clone this repository 
 
-      git clone 
+      git clone <URL copied from the "clone this repository" control above>
+   - or -   
+      svn co <URL copied from the "clone this repository" control above>
 
    build the image with a tag for the final image
 
@@ -33,18 +35,30 @@ BUILDING THE SAMPLE
 
    run the image 
 
-      docker run -it --rm builder-test:latest 
-   
-RUNNING THE SAMPLES
+      docker run -it --rm 40000:15903 builder-test:latest 
 
-   
-   1. Navigate to the folder that contains this README.txt 
-      followed by the corresponding monitorScript code:
-   
-      > engine_inject -v ComplexPlugin.mon -p docker_port
+
+RUNNING THE SAMPLES
       
+   start another connection to the machine running the docker image, and confirm that the 
+   expected docker container is running (and discover its container id)
+   
+      docker ps
+      
+   in the <SAG installation>/Apama/bin directory
+   
+      . apama_env
+      
+   navigate to the folder that contains this README.txt and the monitorScript code. 
+      
+      engine_inject -v ComplexPlugin.mon -p 40000
+           
       
 SAMPLE OUTPUT
 
+   this can be viewed on the screen or read using
+   
+      docker logs <container id>
+      
    ComplexPlugin.mon should produce output similar to the file ComplexPluginSample.txt
-
+   
