@@ -23,11 +23,11 @@ build a docker image that runs the application in the deployed container.
 
 clone this repository 
 
-`git clone <URL copied from the "clone this repository" >`
+`git clone <URL copied from the "clone this repository" at the top of the page>`
       
 or
       
-`svn co <URL copied from the "clone this repository" >`
+`svn co <URL copied from the "clone this repository" at the top of the page>`
 
 build the image with a tag for the final image
 
