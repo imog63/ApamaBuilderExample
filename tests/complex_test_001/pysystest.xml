@@ -4,7 +4,8 @@
   <description> 
     <title>Test Java plugin ComplexPlugin</title>    
     <purpose><![CDATA[
-    Starts correlator, sends events and checks output of the correlator.
+    Starts correlator, sends events and checks output of the correlator. 
+    Finally creates an image from the correlator image including build artifacts
 ]]>
     </purpose>
   </description>
