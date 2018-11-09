@@ -12,7 +12,6 @@ COPY --chown=1724:1724 ComplexPlugin.mon ${APAMA_WORK}/ComplexPlugin.mon
 COPY --chown=1724:1724 ComplexPlugin.xml ${APAMA_WORK}/ComplexPlugin.xml
 COPY --chown=1724:1724 ComplexPluginSample.txt ${APAMA_WORK}/ComplexPluginSample.txt
 COPY --chown=1724:1724 build.xml ${APAMA_WORK}/build.xml
-#COPY --chown=1724:1724 pysysproject.xml ${APAMA_WORK}/pysysproject.xml
 COPY --chown=1724:1724 complex.yaml ${APAMA_WORK}/complex.yaml
 
 #build the application
