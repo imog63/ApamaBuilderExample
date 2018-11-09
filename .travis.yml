@@ -3,3 +3,6 @@ services:
 
 script:
         - docker build -t apama_builder_example .
+
+before_install:
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
