@@ -32,6 +32,7 @@ or
 build the image with a tag for the final image
 
 `cd ApamaBuilderExample.git/trunk`
+
 `docker build -t builder-test:latest .`
 
 run the image 
