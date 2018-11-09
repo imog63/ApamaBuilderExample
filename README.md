@@ -29,7 +29,7 @@ or
       
 `svn co <URL copied from the "clone this repository" at the top of the page>`
 
-build the image with a tag for the final image
+build the image with a tag for the final image, which also runs an automated test
 
 `cd ApamaBuilderExample.git/trunk`
 
