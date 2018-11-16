@@ -49,7 +49,7 @@ monitor ComplexPluginTest
 			intSeq[i] := i;
 			floatSeq[i] := i.toFloat();
 			boolSeq[i] := true;
-			stringSeq[i] := "How long is a piece of string?";
+			stringSeq[i] := "How long is a piece of wool?";
 			decimalSeq[i] := i.toDecimal();
 			i := i + 1;
 		}
