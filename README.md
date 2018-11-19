@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/CaribouJohn/ApamaBuilderExample.svg?branch=master)](https://travis-ci.com/CaribouJohn/ApamaBuilderExample)
+[![Build Status](https://travis-ci.com/imog63/ApamaBuilderExample.svg?branch=master)](https://travis-ci.com/imog63/ApamaBuilderExample)
 
 # Using the Apama Builder image
 
