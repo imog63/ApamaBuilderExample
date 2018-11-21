@@ -3,4 +3,5 @@ correlator:
     initialization:
         list:
             - ${PARENT_DIR}/complex_plugin.jar
+            - ${PARENT_DIR}/ComplexPlugin.mon
         encoding: UTF8

@@ -23,5 +23,6 @@ RUN cd tests && pysys run
 FROM ${APAMA_IMAGE}
 COPY --from=builder ${APAMA_WORK}/complex_plugin.jar ${APAMA_WORK}/complex_plugin.jar
 COPY --from=builder ${APAMA_WORK}/complex.yaml ${APAMA_WORK}/complex.yaml
+COPY --from=builder ${APAMA_WORK}/ComplexPlugin.mon ${APAMA_WORK}/ComplexPlugin.mon
 
 CMD ["correlator", "--config", "complex.yaml"]
